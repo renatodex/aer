@@ -140,7 +140,7 @@
 					
 					this.o = o;
 					
-					if (this.extended !== undefined) {
+					if (this.extended != undefined) {
 						_$protos += 1;
 						_$proto(this.o, this.extended, this.namespace);
 					}
@@ -162,6 +162,10 @@
 			var _o = {
 				'Object' : function(obj) {
 					var _class = this.o.prototype.aer$classname;
+					
+					if(this.arguments != undefined) {
+						return;
+					}
 					
 					this.o.prototype = obj;
 					this.o.prototype.aer$classname = _class;
@@ -198,7 +202,7 @@
 	 * @function _$async
 	 * @for _$proto
 	 * @param o {Function} The implementation of the class
-	 * @param x {Object} The 
+	 * @param x {Array} The 
 	 * @param n {String}
 	 * @param timevar {setInterval} The reference to the timer to stop
 	 * @return {null}
@@ -217,7 +221,6 @@
 		o.prototype.aer$classname = n;
 		
 		clearInterval(timevar);
-		
 		_$protos -= 1;
 	}
 	
@@ -252,6 +255,7 @@
 	
 	/**
 	 * Mix objects
+	 * TODO Há um bug em que não está mixando os prototypes corretamente, não havendo herança de métodos
 	 * 
 	 * @function _$mix
 	 * @param array {Array} An array of objects to mix
@@ -263,12 +267,12 @@
 		
 		for (i = 0; i < array.length; i++) {
 			for (prop in _$new[array[i]].prototype) {
-				if (prop != 'aer$classname') {
+				if (prop !== 'aer$classname') {
 					obj[prop] = _$new[array[i]].prototype[prop];
 				}
 			}
 		}
-		
+
 		return obj;
 	}
 	
@@ -285,8 +289,6 @@
 	 */
 	function _$chain(namespace, fn, dependencies) { 'use strict';
 		var n = namespace.split('.'), i, l, prop, clone = {}, scope = _$aerclass;
-		
-		fn.prototype.aer$classname = namespace;
 		
 		for (i = 0, l = n.length; i < l; i++) {
 			if (!scope[n[i]]) {
@@ -309,6 +311,8 @@
 				scope = scope[n[i]];
 			}
 		}
+		
+		scope[n[i-1]].prototype.aer$classname = namespace;
 		
 		return scope[n[i-1]];
 	}
