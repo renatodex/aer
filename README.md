@@ -54,6 +54,7 @@ The best way to explain is with code snipets!!!
 <hr />
 
 <h3>Create classes with aer['@class']()['@']()['@prototype']()!</h3>
+<p>Has namespace support.</p>
 ```javascript
   // the ['@'] directive receives a function, that is the implementation of your object and
   // the ['@prototype'] directive receives an object that contains the methods of your class (all public!!!)
