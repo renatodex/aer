@@ -414,6 +414,6 @@
 		this.o = o;
 	}
 	
-	$global.Aer = Aer;
+	$global.aer = aer;
 	
 })(window);
