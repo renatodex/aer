@@ -35,7 +35,7 @@
 	
 	
 	// directives
-	var Aer = {
+	var aer = {
 		'@' : _$new,
 		'@class' : _$class,
 		'@overload' : _$over,
