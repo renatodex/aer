@@ -56,7 +56,7 @@ The best way to explain is with code snipets!!!
 <h3>Create classes with aer['@class']()['@']()['@prototype']()!</h3>
 ```javascript
   // the ['@'] directive receives a function, that is the implementation of your object and
-  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  // the ['@prototype'] directive receives an object that contains the methods of your class (all public!!!)
   aer['@class']('namespace.myapp.MyClass')['@'](function() {
     this.prop1 = 'some string';
     this.prop2 = 25;
@@ -73,7 +73,7 @@ The best way to explain is with code snipets!!!
 <h3>Overload your class methods.</h3>
 ```javascript
   // the ['@'] directive receives a function, that is the implementation of your object and
-  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  // the ['@prototype'] directive receives an object that contains the methods of your class (all public!!!)
   aer['@class']('namespace.myapp.MyClass')['@'](function() {
     this.prop1 = 'some string';
     this.prop2 = 25;
@@ -91,7 +91,7 @@ The best way to explain is with code snipets!!!
   var instance = new aer['@']['namespace.myapp.MyClass']();
   
   instance.method1(); // returns 'some string'
-  instance.method2(/abc/g, {}); // returns 25
+  instance.method1(/abc/g, {}); // returns 25
 ```
 <hr />
 
@@ -99,7 +99,7 @@ The best way to explain is with code snipets!!!
 <p>Really really really really really really really really really really really really!!!</p>
 ```javascript
   // the ['@'] directive receives a function, that is the implementation of your object and
-  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  // the ['@prototype'] directive receives an object that contains the methods of your class (all public!!!)
   aer['@class']('namespace.myapp.MyClass1')['@'](function() {
     this.prop1 = 'some string';
     this.prop2 = 25;
