@@ -51,3 +51,46 @@ The best way to explain is with code snipets!!!
   someFunc(13, 24); // returns 37
   someFunc('13', 24); // returns an error because have no signature. The first param is a string!!!
 ```
+
+<hr />
+
+<h3>Create classes with aer['@class']()['@']()['@prototype']()!</h3>
+```javascript
+  // the ['@'] directive receives a function, that is the implementation of your object and
+  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  aer['@class']('namespace.myapp.MyClass')['@'](function() {
+    this.prop1 = 'some string';
+    this.prop2 = 25;
+  })['@prototype']({
+    method1 : function() {
+      return this.prop1;
+    }
+  });
+  
+  var instance = new aer['@']['namespace.myapp.MyClass']();
+```
+<hr />
+
+<h3>Overload your class methods!!!</h3>
+```javascript
+  // the ['@'] directive receives a function, that is the implementation of your object and
+  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  aer['@class']('namespace.myapp.MyClass')['@'](function() {
+    this.prop1 = 'some string';
+    this.prop2 = 25;
+  })['@prototype']({
+    method1 : aer['@overload']({
+      '' : function() {
+        return this.prop1;
+      }
+      'RegExp,Object' : function(regex, obj) {
+        return this.prop2;
+      }
+    })
+  });
+  
+  var instance = new aer['@']['namespace.myapp.MyClass']();
+  
+  instance.method1(); // returns 'some string'
+  instance.method2(/abc/g, {}); // returns 25
+```
