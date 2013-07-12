@@ -51,7 +51,6 @@ The best way to explain is with code snipets!!!
   someFunc(13, 24); // returns 37
   someFunc('13', 24); // returns an error because have no signature. The first param is a string!!!
 ```
-
 <hr />
 
 <h3>Create classes with aer['@class']()['@']()['@prototype']()!</h3>
@@ -71,7 +70,7 @@ The best way to explain is with code snipets!!!
 ```
 <hr />
 
-<h3>Overload your class methods!!!</h3>
+<h3>Overload your class methods.</h3>
 ```javascript
   // the ['@'] directive receives a function, that is the implementation of your object and
   // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
@@ -93,4 +92,49 @@ The best way to explain is with code snipets!!!
   
   instance.method1(); // returns 'some string'
   instance.method2(/abc/g, {}); // returns 25
+```
+<hr />
+
+<h3>Ah, yes, the data typing is really really really really really really POWERFUL.</h3>
+<p>Really really really really really really really really really really really really!!!</p>
+```javascript
+  // the ['@'] directive receives a function, that is the implementation of your object and
+  // the ['@prototype'] directive receives an object that is the methods of your class (all public!!!)
+  aer['@class']('namespace.myapp.MyClass1')['@'](function() {
+    this.prop1 = 'some string';
+    this.prop2 = 25;
+  })['@prototype']({
+    method1 : aer['@overload']({
+      '' : function() {
+        return this.prop1;
+      }
+      'RegExp,Object' : function(regex, obj) {
+        return this.prop2;
+      }
+    })
+  });
+  
+  aer['@class']('namespace.myapp.MyClass2')['@'](function(param) {
+    this.prop1 = 'string some';
+    this.prop2 = 52;
+    this.prop3 = param;
+  })['@prototype']({
+    method1 : aer['@overload']({
+      'namespace.myapp.MyClass1' : function(instance) {
+        return this.prop1;
+      },
+      'namespace.myapp.MyClass1,namespace.myapp.MyClass2' : function(instance1, instance2) {
+        return this.prop2;
+      },
+      'namespace.myapp.MyClass1,Function,namespace.myapp.MyClass2' : function(instance1, someFunc, instance2) {
+        return 'AWESOME!!!';
+      }
+    })
+  });
+  
+  var instance1 = new aer['@']['namespace.myapp.MyClass1']();
+  var instance2 = new aer['@']['namespace.myapp.MyClass2']();
+  
+  instance2.method1(instance1); // returns 'some string'
+  instance2.method1(instance1, function(){}, instance2); // returns 'AWESOME!!!'
 ```
