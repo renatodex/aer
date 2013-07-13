@@ -82,7 +82,7 @@ The best way to explain is with code snipets!!!
     method1 : aer['@overload']({
       '' : function() {
         return this.prop1;
-      }
+      },
       'RegExp,Object' : function(regex, obj) {
         return this.prop2;
       }
@@ -108,7 +108,7 @@ The best way to explain is with code snipets!!!
     method1 : aer['@overload']({
       '' : function() {
         return this.prop1;
-      }
+      },
       'RegExp,Object' : function(regex, obj) {
         return this.prop2;
       }
